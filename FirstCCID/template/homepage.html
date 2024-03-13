@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Churn Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        input[type=text],
+        input[type=number],
+        .custom-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        form,
+        table {
+            width: 100%;
+        }
+
+        input[type=submit] {
+            background-color: #FB0000;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 230px;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: black;
+            padding: 20px;
+            display: flex;
+        }
+
+        .form_wrapper {
+            flex: 1;
+            text-align: center;
+        }
+
+        label {
+            color: white;
+        }
+
+        .col-label {
+            width: 25%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customer Churn Predictor Project</h1>
+    <div class="container">
+        <form action="/send" name="send_data" method="post">
+            <table>
+
+                <tr>
+                    <td class="col-label"> <label>Total Transaction Ct</label></td>
+                    <td class="col-input"> <input type="number"step ="any" name="Total_Trans_Ct" placeholder="Total_Trans_Ct"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Total Transaction Amount</label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Total_Trans_Amt" placeholder="Total_Trans_Amt"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Total Revolving Balance</label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Total_Revolving_Bal" placeholder="Total_Revolving_Bal"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"><label>Total Count Change Q4 Q1</label></td>
+                    <td class="col-input"><input type="number"step="any" name="Total_Ct_Chng_Q4_Q1" placeholder="Total_Ct_Chng_Q4_Q1">
+                </tr>
+                    <td class="col-label"> <label>Average Utilization Ratio</label></td>
+                    <td class="col-input">
+                        <input type="number" step="any" name="Avg_Utilization_Ratio" placeholder="Avg_Utilization_Ratio">
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Total Relationship Count</label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Total_Relationship_Count" placeholder="Total_Relationship_Count"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Quartely Change in Total Amount</label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Total_Amt_Chng_Q4_Q1" placeholder="Total_Amt_Chng_Q4_Q1"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Credit Limit</label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Credit_Limit" placeholder="Credit_Limit"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Average Open To Buy </label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Avg_Open_To_Buy" placeholder="Avg_Open_To_Buy"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Months on Book </label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Months_on_book" placeholder="Months_on_book"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Inactive Months </label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Months_Inactive_12_mon" placeholder="Months_Inactive_12_mon"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Contact Count </label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Contacts_Count_12_mon" placeholder="Contacts_Count_12_mon"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Dependent Count</label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Dependent_count" placeholder="Dependent_count"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label"> <label>Customer's Age</label></td>
+                    <td class="col-input"> <input type="number"step="any" name="Customer_Age" placeholder="Customer_Age"></td>
+                </tr>
+
+                <tr>
+                    <td class="col-label">
+                        <label for="educationlevel">Education Level</label>
+                    </td>
+                    <td class="col-input">
+                        <select class="custom-select" name="Education_Level" id="educationlevel">
+                            <option value="High School">High School</option>
+                            <option value="College">College</option>
+                            <option value="Graduate">Graduate</option>
+                            <option value="Post-Graduate">Post-Graduate</option>
+                            <option value="Doctorate">Doctorate</option>
+                            <option value="Uneducated">Uneducated</option>
+                            <option value="Unknown">Unknown</option>
+                        </select>
+
+                <tr>
+                    <td class="col-label">
+                        <label for="incomecategory">Income Category</label>
+                    </td>
+                    <td class="col-input">
+                        <select class="custom-select" name="Income_Category" id="incomecategory">
+                            <option value="Less than $40K">Less than $40K</option>
+                            <option value="$40K - $60K">$40K - $60K</option>
+                            <option value="$60K - $80K">$60K - $80K</option>
+                            <option value="$80K - $120K">$80K - $120K</option>
+                            <option value="$120K+">$120K+</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-label">
+                        <label for="maritalStatus">Marital Status</label>
+                    </td>
+                    <td class="col-input">
+                        <select class="custom-select" name="Marital_Status" id="maritalStatus">
+                            <option value="married">Married</option>
+                            <option value="single">Single</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <td class="col-label">
+                        <label for="cardcategory">Card Category</label>
+                    </td>
+                    <td class="col-input">
+                        <select class="custom-select" name="Card_Category" id="cardcategory">
+                            <option value="blue">Blue</option>
+                            <option value="silver">Silver</option>
+                            <option value="gold">Gold</option>
+                            <option value="platinum">Platinum</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-label">
+                        <label for="gender">Gender</label>
+                    </td>
+                    <td class="col-input">
+                        <select class="custom-select" name="Gender" id="gender">
+                            <option value="male">M</option>
+                            <option value="female">F</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr class="form_wrapper">
+                    <td colspan='2'> <input type="submit" value="PREDICT CHURNER "/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
